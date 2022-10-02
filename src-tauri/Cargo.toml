@@ -17,6 +17,14 @@ tauri-build = { version = "1.1", features = [] }
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.1", features = ["api-all"] }
+rocket = {version = "0.5.0-rc.2", features = ["json"] }
+dotenv = "0.15.0"
+mongodb = {version = "2.3.0", feature = ["sync"] }
+
+[dependencies.rocket_db_pools]
+version = "0.1.0-rc.2"
+features = ["mongodb"]
+
 
 [features]
 # by default Tauri runs in production mode
