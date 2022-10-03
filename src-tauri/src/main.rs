@@ -3,11 +3,10 @@
     windows_subsystem = "windows"
 )]
 
-
-#[rocket::get("/hello")]
-fn world() -> &'static str {
-  "Hello, world!"
-}
+mod api;
+mod repository;
+mod models;
+use api::rocker_launcher::rocket;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
@@ -21,9 +20,7 @@ fn main() {
         .invoke_handler(tauri::generate_handler![greet])
         .setup(|_app| {
             tauri::async_runtime::spawn(
-              rocket::build()
-                    .mount("/hello", rocket::routes![world])
-                    .launch()
+                rocket().launch()
             );
             Ok(())
           })
