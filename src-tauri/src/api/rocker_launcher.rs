@@ -30,6 +30,9 @@ pub fn rocket() -> Rocket<Build> {
         .mount(
             "/",
             routes![profesional_api::all,
-                    profesional_api::post]
+                    profesional_api::get_by_id,
+                    profesional_api::post,
+                    profesional_api::put,
+                    profesional_api::delete,]
         )
 }
