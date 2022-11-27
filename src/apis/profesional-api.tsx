@@ -168,11 +168,12 @@
              }
              localVarUrlObj.search = (new URLSearchParams(query)).toString();
              let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+             
+             const needsSerialization = (typeof body !== "string") || localVarHeaderParameter['Content-Type'] === 'application/json';
+             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+             
+             localVarHeaderParameter['Content-Length'] = localVarRequestOptions.data.length;
              localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-             //const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-             //localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
- 
              return {
                  url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                  options: localVarRequestOptions,
@@ -214,9 +215,12 @@
              }
              localVarUrlObj.search = (new URLSearchParams(query)).toString();
              let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+             
+             const needsSerialization = (typeof body !== "string") || localVarHeaderParameter['Content-Type'] === 'application/json';
+             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+ 
+             localVarHeaderParameter['Content-Length'] = localVarRequestOptions.data.len();
              localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-             //const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-             //localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
  
              return {
                  url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,

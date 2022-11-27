@@ -16,7 +16,7 @@
  * @export
  * @interface ProfesionalRequest
  */
-export interface ProfesionalRequest {
+ export interface ProfesionalRequest {
     /**
      * 
      * @type {string}
@@ -49,10 +49,10 @@ export interface ProfesionalRequest {
     email: string;
     /**
      * 
-     * @type {string}
+     * @type {boolean}
      * @memberof ProfesionalRequest
      */
-    dateOfBirth?: string;
+    enabled?: boolean;
     /**
      * 
      * @type {Array<string>}

@@ -14,7 +14,7 @@
  import { Configuration } from "./configuration";
  import globalAxios, { AxiosRequestConfig, AxiosInstance } from 'axios';
 
-export const BASE_PATH = "http://localhost:8000".replace(/\/+$/, "");
+export const BASE_PATH = "http://127.0.0.1:8000".replace(/\/+$/, "");
 
 
  /**

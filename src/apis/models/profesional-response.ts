@@ -16,7 +16,7 @@
  * @export
  * @interface ProfesionalResponse
  */
-export interface ProfesionalResponse {
+ export interface ProfesionalResponse {
     /**
      * Unique identifier for the given user.
      * @type {string}
@@ -55,10 +55,10 @@ export interface ProfesionalResponse {
     email: string;
     /**
      * 
-     * @type {string}
+     * @type {boolean}
      * @memberof ProfesionalResponse
      */
-    dateOfBirth?: string;
+    enabled?: boolean;
     /**
      * 
      * @type {Array<string>}
