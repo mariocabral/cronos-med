@@ -29,10 +29,11 @@ import {
   cilUserPlus
 } from '@coreui/icons'
 import { useAppDispatch, useAppSelector } from '../../state/hooks'
-import { selectProfesional, setCurrentProfesional, showProfesionalModal, setModalOperation } from '../../state/reducers/profesionalReducer'
+import { selectProfesional, setCurrentProfesional, showProfesionalModal, showProfesionalDeleteModal, setModalOperation } from '../../state/reducers/profesionalReducer'
 import { ProfesionalService } from '../../services/profesional-service'
 import { ProfesionalResponse } from '../../apis/models'
 import ProfesionalModal from './ProfesionalModal'
+import ProfesionalDeleteModal from './ProfesionalDeleteModal'
 import { Operations } from '../../state/models/ProfesionalState'
 
 
@@ -85,7 +86,7 @@ const Profesionals: React.FC = () => {
   const deleteProfesionalInfo = (item : ProfesionalResponse) => {
     dispatch(setCurrentProfesional(item));
     dispatch(setModalOperation(Operations.DELETE_PROFESIONAL));
-    dispatch(showProfesionalModal(true));
+    dispatch(showProfesionalDeleteModal(true));
   };
 
   return (
@@ -186,6 +187,7 @@ const Profesionals: React.FC = () => {
       </CCard>
     </CContainer>
     <ProfesionalModal></ProfesionalModal>
+    <ProfesionalDeleteModal></ProfesionalDeleteModal>
     </>
   )
 }

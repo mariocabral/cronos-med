@@ -45,5 +45,12 @@ export class ProfesionalService {
                                 .finally(() => console.log("Update profesional service constructor done."))
     }
 
+    deleteProfesional(id: string) {
+        console.log("delete a profesional {}", id)
+        this.profesionalApi.deleteProfesionalId(id)
+                                .then((response) => console.log("profesional deleted {}", response))
+                                .catch((err) => console.log(err))
+                                .finally(() => console.log("Delete profesional service constructor done."))
+    }
 }
 

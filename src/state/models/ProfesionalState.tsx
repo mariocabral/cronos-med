@@ -9,5 +9,6 @@ export interface ProfesionalState {
     profesionals: Array<ProfesionalResponse>,
     currentProfesional?: ProfesionalResponse,
     showProfesionalModal: boolean,
+    showProfesionalDeleteModal: boolean,
     modalOperation: Operations,
   }
