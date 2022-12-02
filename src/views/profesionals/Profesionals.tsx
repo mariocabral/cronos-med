@@ -40,7 +40,6 @@ import { Operations } from '../../state/models/ProfesionalState'
 const Profesionals: React.FC = () => {
   const dispatch = useAppDispatch();
   const profesionalState = useAppSelector(selectProfesional);
-  //dispatch(showProfesionalModal(false));
   const profesionalTable = profesionalState.profesionals;
   const service = new ProfesionalService();
   let searchValue = "";
@@ -52,6 +51,7 @@ const Profesionals: React.FC = () => {
 
   const newProfesional = () => {
     dispatch(setModalOperation(Operations.ADD_PROFESIONAL));
+    dispatch(setCurrentProfesional(undefined));
     dispatch(showProfesionalModal(true));
   };
   
@@ -71,8 +71,8 @@ const Profesionals: React.FC = () => {
   };
 
   const showProfesionalInfo = (item : ProfesionalResponse) => {
-    dispatch(setCurrentProfesional(item));
     dispatch(setModalOperation(Operations.SHOW_PROFESIONAL));
+    dispatch(setCurrentProfesional(item));
     dispatch(showProfesionalModal(true));
   };
 
@@ -166,7 +166,7 @@ const Profesionals: React.FC = () => {
                   <CTableDataCell >
                     <CCol>
                       <CButtonGroup role="group" >
-                        <CButton variant="outline" color="success" onClick={() => showProfesionalInfo(item)}>
+                        <CButton variant="outline" color="success" onClick={(event) => showProfesionalInfo(item)}>
                           <span className="btn-icon mr-2"><CIcon icon={cilDescription} /> </span>
                         </CButton>
                         <CButton variant="outline" color="info" onClick={() => updateProfesionalInfo(item)}>

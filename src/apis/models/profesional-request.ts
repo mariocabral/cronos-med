@@ -22,6 +22,12 @@
      * @type {string}
      * @memberof ProfesionalRequest
      */
+    profesionalId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfesionalRequest
+     */
     firstName: string;
     /**
      * 

@@ -14,7 +14,7 @@
  import globalAxios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
  import { Configuration } from './configuration';
  // Some imports not used depending on template conditions
- 
+ // @ts-ignore
  import { BASE_PATH, RequestArgs, BaseAPI, RequiredError } from './base';
  import { ProfesionalListResponse } from './models';
  import { ProfesionalRequest } from './models';
@@ -219,7 +219,7 @@
              const needsSerialization = (typeof body !== "string") || localVarHeaderParameter['Content-Type'] === 'application/json';
              localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
  
-             localVarHeaderParameter['Content-Length'] = localVarRequestOptions.data.len();
+             localVarHeaderParameter['Content-Length'] = localVarRequestOptions.data.length;
              localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
  
              return {

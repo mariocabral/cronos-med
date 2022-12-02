@@ -25,15 +25,24 @@ export class ProfesionalService {
         this.profesionalApi.getProfesionalAll()
                                 .then((response) => this.dispatch(updateProfesionalList(response.data)))
                                 .catch(() => this.dispatch(updateProfesionalList(new Array())))
-                                .finally(() => console.log("Init profesional service constructor done."))
+                                .finally(() => console.log("Load profesional service constructor done."))
     }
 
     createProfesional(profesional: ProfesionalRequest) {
         console.log("create a profesional {}", profesional)
         this.profesionalApi.postProfesional(profesional)
                                 .then((response) => console.log("profesional created {}", response))
-                                .catch(() => this.dispatch(updateProfesionalList(new Array())))
-                                .finally(() => console.log("Init profesional service constructor done."))
+                                .catch((err) => console.log(err))
+                                .finally(() => console.log("Create profesional service constructor done."))
+    }
+
+    updateProfesional(id: string, profesional: ProfesionalRequest) {
+        console.log("update a profesional {}", profesional)
+        profesional.profesionalId = id;
+        this.profesionalApi.putProfesionalId(id, profesional)
+                                .then((response) => console.log("profesional updated {}", response))
+                                .catch((err) => console.log(err))
+                                .finally(() => console.log("Update profesional service constructor done."))
     }
 
 }

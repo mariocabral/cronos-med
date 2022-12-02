@@ -22,7 +22,7 @@
      * @type {string}
      * @memberof ProfesionalResponse
      */
-    id: string;
+    profesionalId: string;
     /**
      * 
      * @type {string}

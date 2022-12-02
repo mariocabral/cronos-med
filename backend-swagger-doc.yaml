@@ -108,7 +108,7 @@ components:
       type: object
       description: ''
       properties:
-        id:
+        profesionalId:
           type: string
           format: uuid
           description: Unique identifier for the given user.
@@ -129,13 +129,10 @@ components:
           type: string
           format: email
           example: alice.smith@gmail.com
-        dateOfBirth:
-          type: string
-          format: date
-          example: '1997-10-31'
+        enabled:
+          type: boolean
         phones:
           type: array
-          uniqueItems: true
           items:
             type: string
             example: '+54 358-43434343'
@@ -150,7 +147,7 @@ components:
           description: The last date that the user was updated.
           example: '2022-08-24'
       required:
-        - id
+        - profesionalId
         - firstName
         - lastName
         - email
@@ -162,6 +159,9 @@ components:
       type: object
       description: ''
       properties:
+        profesionalId:
+          type: string
+          format: uuid
         firstName:
           type: string
           example: Alice
@@ -178,13 +178,10 @@ components:
           type: string
           format: email
           example: alice.smith@gmail.com
-        dateOfBirth:
-          type: string
-          format: date
-          example: '1997-10-31'
+        enabled:
+          type: boolean
         phones:
           type: array
-          uniqueItems: true
           items:
             type: string
             example: '+54 358-43434343'
