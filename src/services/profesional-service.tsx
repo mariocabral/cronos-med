@@ -20,9 +20,9 @@ export class ProfesionalService {
         this.profesionalApi = new ProfesionalApi({basePath : this.configState.baseBackendUrl.toString()})
     }
 
-    loadAllProfesionals() {
-        console.log("Loading all profesionals")
-        this.profesionalApi.getProfesionalAll()
+    loadAllProfesionals(search? :String) {
+        console.log("Loading profesionals with search critera '{}'", search)
+        this.profesionalApi.getProfesionalAll(search?.toString())
                                 .then((response) => this.dispatch(updateProfesionalList(response.data)))
                                 .catch(() => this.dispatch(updateProfesionalList(new Array())))
                                 .finally(() => console.log("Load profesional service constructor done."))

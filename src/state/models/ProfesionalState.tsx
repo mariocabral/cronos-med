@@ -11,4 +11,5 @@ export interface ProfesionalState {
     showProfesionalModal: boolean,
     showProfesionalDeleteModal: boolean,
     modalOperation: Operations,
+    search?: String,
   }

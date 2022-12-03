@@ -6,11 +6,18 @@ use uuid::Uuid;
 use rocket::log::info_;
 
 
-const COLLECTION: &str = "profesionals";
+pub const PROFESIONAL_COLLECTION: &str = "profesionals";
+pub const PROFESIONAL_SEARCH_INDEX: &str = "$**_\"text\"";
 
-pub async fn all(connection: &MongoDatabase) -> Result<Vec<Profesional>> {
+
+pub async fn all(search: Option<String>, connection: &MongoDatabase) -> Result<Vec<Profesional>> {
     let database = connection.database(&get_db_name());
-    let mut cursor: mongodb::Cursor<Profesional> = database.collection::<Profesional>(COLLECTION).find(None, None).await?;
+    let filter = search.map_or_else(
+                                        || None, 
+                                        |s| Some (doc! { "$text": { "$search": s } })
+                                    );
+    let mut cursor: mongodb::Cursor<Profesional> = database.collection::<Profesional>(PROFESIONAL_COLLECTION)
+                                                        .find(filter, None).await?;
     let mut result = Vec::new();
     while cursor.advance().await? {
         result.push(cursor.deserialize_current()?)
@@ -20,7 +27,7 @@ pub async fn all(connection: &MongoDatabase) -> Result<Vec<Profesional>> {
 
 pub async fn get(id: String, connection: &MongoDatabase) -> Result<Option<Profesional>> {
     let database = connection.database(&get_db_name());
-    let collection = database.collection::<Profesional>(COLLECTION);
+    let collection = database.collection::<Profesional>(PROFESIONAL_COLLECTION);
     match collection.find_one(Some(doc! {"profesional_id": id}), None).await {
         Ok(profesional_data) => {
             Ok(profesional_data)
@@ -34,7 +41,7 @@ pub async fn insert(profesional: Profesional, connection: &MongoDatabase) -> Res
     let profesional_uuid = Uuid::new_v4().to_string();
     new_profesional.profesional_id = Some(profesional_uuid.clone());
     let database = connection.database(&get_db_name());
-    let collection = database.collection::<Profesional>(COLLECTION);
+    let collection = database.collection::<Profesional>(PROFESIONAL_COLLECTION);
     match collection.insert_one(new_profesional, None).await {
         Ok(id) => {
             let object_id = id.inserted_id.as_object_id().clone();
@@ -50,7 +57,7 @@ pub async fn insert(profesional: Profesional, connection: &MongoDatabase) -> Res
 pub async fn update(id: String, profesional: Profesional, connection: &MongoDatabase) -> Result<Profesional> {
     let updated_profesional = profesional.clone();
     let database = connection.database(&get_db_name());
-    let collection = database.collection::<Profesional>(COLLECTION);
+    let collection = database.collection::<Profesional>(PROFESIONAL_COLLECTION);
     match collection.replace_one(doc! {"profesionalId": id}, profesional, None).await {
         Ok(update_result) => {
             info_!("[PUT] update profesional modified count {}", update_result.modified_count);
@@ -63,7 +70,7 @@ pub async fn update(id: String, profesional: Profesional, connection: &MongoData
 
 pub async fn delete(id: String, connection: &MongoDatabase) -> Result<DeleteResult> {
     let database = connection.database(&get_db_name());
-    let collection = database.collection::<Profesional>(COLLECTION);
+    let collection = database.collection::<Profesional>(PROFESIONAL_COLLECTION);
     match collection.delete_one(doc! {"profesionalId": id}, None).await {
         Ok(result) => {
             Ok(result)

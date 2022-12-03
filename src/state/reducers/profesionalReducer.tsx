@@ -11,6 +11,7 @@ const initialState: ProfesionalState = {
   showProfesionalModal: false,
   showProfesionalDeleteModal: false,
   modalOperation: Operations.NONE,
+  search: undefined
 };
 
 
@@ -36,11 +37,15 @@ export const profesionalSlice = createSlice({
         console.log('update profesional delete modal show: ' + action.payload);
         state.showProfesionalDeleteModal = action.payload;
       },
+      updateSearch: (state, action: PayloadAction<String | undefined> ) => {
+        console.log('search profesional value: ' + action.payload);
+        state.search = action.payload;
+      },
     },
   });
   
 
-  export const { updateProfesionalList, showProfesionalModal, showProfesionalDeleteModal, setCurrentProfesional, setModalOperation } = profesionalSlice.actions;
+  export const { updateProfesionalList, showProfesionalModal, showProfesionalDeleteModal, setCurrentProfesional, setModalOperation, updateSearch } = profesionalSlice.actions;
 
   // The function below is called a selector and allows us to select a value from
   // the state. Selectors can also be defined inline where they're used instead of

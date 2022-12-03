@@ -16,6 +16,12 @@ paths:
       summary: Get all profesional Info
       tags:
         - Profesional
+      parameters: 
+        - in: query
+          name: search
+          required: false
+          schema: 
+            type: string
       responses:
         '200':
           description: Profesional List Found

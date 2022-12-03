@@ -66,39 +66,44 @@
              };
          },
          /**
-          * Retrieve the information of all profesionals
-          * @summary Get all profesional Info
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-         getProfesionalAll: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-             const localVarPath = `/profesional`;
-             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-             let baseOptions;
-             if (configuration) {
-                 baseOptions = configuration.baseOptions;
-             }
-             const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
-             const localVarHeaderParameter = {} as any;
-             const localVarQueryParameter = {} as any;
- 
-             const query = new URLSearchParams(localVarUrlObj.search);
-             for (const key in localVarQueryParameter) {
-                 query.set(key, localVarQueryParameter[key]);
-             }
-             for (const key in options.params) {
-                 query.set(key, options.params[key]);
-             }
-             localVarUrlObj.search = (new URLSearchParams(query)).toString();
-             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
- 
-             return {
-                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                 options: localVarRequestOptions,
-             };
-         },
+         * Retrieve the information of all profesionals
+         * @summary Get all profesional Info
+         * @param {string} [search] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProfesionalAll: async (search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/profesional`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
          /**
           * Retrieve the information of profesional by ID
           * @summary Get all profesional Info
@@ -251,18 +256,19 @@
              };
          },
          /**
-          * Retrieve the information of all profesionals
-          * @summary Get all profesional Info
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-         async getProfesionalAll(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<ProfesionalListResponse>>> {
-             const localVarAxiosArgs = await ProfesionalApiAxiosParamCreator(configuration).getProfesionalAll(options);
-             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                 return axios.request(axiosRequestArgs);
-             };
-         },
+         * Retrieve the information of all profesionals
+         * @summary Get all profesional Info
+         * @param {string} [search] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProfesionalAll(search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<ProfesionalListResponse>>> {
+            const localVarAxiosArgs = await ProfesionalApiAxiosParamCreator(configuration).getProfesionalAll(search, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
          /**
           * Retrieve the information of profesional by ID
           * @summary Get all profesional Info
@@ -325,14 +331,15 @@
              return ProfesionalApiFp(configuration).deleteProfesionalId(id, options).then((request) => request(axios, basePath));
          },
          /**
-          * Retrieve the information of all profesionals
-          * @summary Get all profesional Info
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-         async getProfesionalAll(options?: AxiosRequestConfig): Promise<AxiosResponse<ProfesionalListResponse>> {
-             return ProfesionalApiFp(configuration).getProfesionalAll(options).then((request) => request(axios, basePath));
-         },
+         * Retrieve the information of all profesionals
+         * @summary Get all profesional Info
+         * @param {string} [search] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProfesionalAll(search?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<ProfesionalListResponse>> {
+            return ProfesionalApiFp(configuration).getProfesionalAll(search, options).then((request) => request(axios, basePath));
+        },
          /**
           * Retrieve the information of profesional by ID
           * @summary Get all profesional Info
@@ -385,15 +392,16 @@
          return ProfesionalApiFp(this.configuration).deleteProfesionalId(id, options).then((request) => request(this.axios, this.basePath));
      }
      /**
-      * Retrieve the information of all profesionals
-      * @summary Get all profesional Info
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof ProfesionalApi
-      */
-     public async getProfesionalAll(options?: AxiosRequestConfig) : Promise<AxiosResponse<ProfesionalListResponse>> {
-         return ProfesionalApiFp(this.configuration).getProfesionalAll(options).then((request) => request(this.axios, this.basePath));
-     }
+     * Retrieve the information of all profesionals
+     * @summary Get all profesional Info
+     * @param {string} [search] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProfesionalApi
+     */
+    public async getProfesionalAll(search?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<ProfesionalListResponse>> {
+        return ProfesionalApiFp(this.configuration).getProfesionalAll(search, options).then((request) => request(this.axios, this.basePath));
+    }
      /**
       * Retrieve the information of profesional by ID
       * @summary Get all profesional Info

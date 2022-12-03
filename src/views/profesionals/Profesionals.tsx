@@ -29,7 +29,7 @@ import {
   cilUserPlus
 } from '@coreui/icons'
 import { useAppDispatch, useAppSelector } from '../../state/hooks'
-import { selectProfesional, setCurrentProfesional, showProfesionalModal, showProfesionalDeleteModal, setModalOperation } from '../../state/reducers/profesionalReducer'
+import { selectProfesional, setCurrentProfesional, showProfesionalModal, showProfesionalDeleteModal, setModalOperation, updateSearch } from '../../state/reducers/profesionalReducer'
 import { ProfesionalService } from '../../services/profesional-service'
 import { ProfesionalResponse } from '../../apis/models'
 import ProfesionalModal from './ProfesionalModal'
@@ -43,11 +43,10 @@ const Profesionals: React.FC = () => {
   const profesionalState = useAppSelector(selectProfesional);
   const profesionalTable = profesionalState.profesionals;
   const service = new ProfesionalService();
-  let searchValue = "";
 
 
   const loadTable = () => {
-    service.loadAllProfesionals();
+    service.loadAllProfesionals(profesionalState.search);
   };
 
   const newProfesional = () => {
@@ -58,7 +57,10 @@ const Profesionals: React.FC = () => {
   
 
   const updateSearchValue = (event: any) => {
-    searchValue = event.target.value;
+    if (event.target.value.length > 0)
+      dispatch(updateSearch(event.target.value))
+    else
+      dispatch(updateSearch(undefined));
   };
 
   const pressEnterToSearch = (event: any) => {
@@ -68,7 +70,8 @@ const Profesionals: React.FC = () => {
   };
 
   const searchProfesionals = () => {
-    console.log("Search " + searchValue);
+    console.log("Search " + profesionalState.search);
+    service.loadAllProfesionals(profesionalState.search);
   };
 
   const showProfesionalInfo = (item : ProfesionalResponse) => {
