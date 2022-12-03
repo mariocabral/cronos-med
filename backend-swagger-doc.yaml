@@ -1,0 +1,212 @@
+openapi: 3.0.0
+info:
+  title: Cronos-Med
+  version: '1.0'
+  contact:
+    name: mario
+    url: mariocabral.com.ar
+    email: mariocabral.dev@gmail.com
+  description: All request used by Cronos Med app
+servers:
+  - url: 'http://localhost:8000'
+paths:
+  /profesional:
+    parameters: []
+    get:
+      summary: Get all profesional Info
+      tags:
+        - Profesional
+      parameters: 
+        - in: query
+          name: search
+          required: false
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: Profesional List Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfesionalListResponse'
+      operationId: get-profesional-all
+      description: Retrieve the information of all profesionals
+    post:
+      summary: ''
+      tags:
+        - Profesional
+      operationId: post-profesional
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfesionalResponse'
+      description: Create a new profesional
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfesionalRequest'
+  '/profesional/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Id of the profesional
+    get:
+      summary: Get all profesional Info
+      tags:
+        - Profesional
+      responses:
+        '200':
+          description: Profesional Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfesionalResponse'
+        '404':
+          description: Profesional Not Found
+      operationId: get-profesional-id
+      description: Retrieve the information of profesional by ID
+      parameters: []
+    delete:
+      summary: 'Delete operation'
+      description: 'Delete oprtation for a single profesional'
+      tags:
+        - Profesional
+      operationId: delete-profesional-id
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: 'Update operation'
+      description: 'Upate profesional by Id'
+      tags:
+        - Profesional
+      operationId: put-profesional-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfesionalRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfesionalResponse'
+        '404':
+          description: Profesional Not Found
+components:
+  schemas:
+    ProfesionalListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProfesionalResponse'
+    ProfesionalResponse:
+      title: Profesional
+      type: object
+      description: ''
+      properties:
+        profesionalId:
+          type: string
+          format: uuid
+          description: Unique identifier for the given user.
+          example: fb89d9bb-1d2c-4907-9c3a-7e87e256e287
+        firstName:
+          type: string
+          example: Alice
+        lastName:
+          type: string
+          example: Smith
+        licence:
+          type: string
+          example: M.P 9742
+        degree:
+          type: string
+          example: Lic. en Psicología
+        email:
+          type: string
+          format: email
+          example: alice.smith@gmail.com
+        enabled:
+          type: boolean
+        phones:
+          type: array
+          items:
+            type: string
+            example: '+54 358-43434343'
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+          example: '2021-08-24'
+        lastModificationDate:
+          type: string
+          format: date
+          description: The last date that the user was updated.
+          example: '2022-08-24'
+      required:
+        - profesionalId
+        - firstName
+        - lastName
+        - email
+        - degree
+        - licence
+        - phones
+    ProfesionalRequest:
+      title: Profesional
+      type: object
+      description: ''
+      properties:
+        profesionalId:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+          example: Alice
+        lastName:
+          type: string
+          example: Smith
+        licence:
+          type: string
+          example: M.P 9742
+        degree:
+          type: string
+          example: Lic. en Psicología
+        email:
+          type: string
+          format: email
+          example: alice.smith@gmail.com
+        enabled:
+          type: boolean
+        phones:
+          type: array
+          items:
+            type: string
+            example: '+54 358-43434343'
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+          example: '2021-08-24'
+        lastModificationDate:
+          type: string
+          format: date
+          description: The last date that the user was updated.
+          example: '2022-08-24'
+      required:
+        - firstName
+        - lastName
+        - email
+        - degree
+        - licence
+        - phones
+tags:
+  - name: Profesional
