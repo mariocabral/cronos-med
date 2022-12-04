@@ -22,5 +22,44 @@
                 "healt": "Mutuales"
             }
         }
+    },
+    "header": {
+        "dashboard":"Panel General",
+        "setting": "Configuracion"
+    },
+    "views": {
+        "profesional": {
+            "title": "Administracion de profesionales",
+            "profesional_count" : "Total de profesionales",
+            "search": "Buscar",
+            "table": {
+                "name": "Nombre y Apellido",
+                "licence": "Matricula",
+                "phones" : "Telefonos"
+            },
+            "modal":{
+                "title" : {
+                  "add": "Agregar un nuevo Profesional",
+                  "delete": "Eliminar datos de un Profesional",
+                  "edit": "Editar los datos de un Profesional",
+                  "show":"Mostrar los datos de un Profesional"
+                },
+                "form": {
+                    "name": "Nombre",
+                    "last_name":"Apellido",
+                    "degree": "Titulo",
+                    "licence": "Matricula",
+                    "phone1": "Telefono principal",
+                    "phone2": "Telefono alternativo",
+                    "email": "Correo electronico",
+                    "enable": "Habilitar",
+                    "submit": "Guardar",
+                    "close": "Cerrar",
+                    "cancel": "Cancelar",
+                    "delete": "Borrar"
+                },
+                "delete_description": "El profesional {{lastName}}, {{firstName}} sera eliminado del sistema."
+            }
+        }
     }
 }

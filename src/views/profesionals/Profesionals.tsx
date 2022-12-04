@@ -35,7 +35,7 @@ import { ProfesionalResponse } from '../../apis/models'
 import ProfesionalModal from './ProfesionalModal'
 import ProfesionalDeleteModal from './ProfesionalDeleteModal'
 import { Operations } from '../../state/models/ProfesionalState'
-
+import { useTranslation } from "react-i18next";
 
 
 const Profesionals: React.FC = () => {
@@ -43,7 +43,7 @@ const Profesionals: React.FC = () => {
   const profesionalState = useAppSelector(selectProfesional);
   const profesionalTable = profesionalState.profesionals;
   const service = new ProfesionalService();
-
+  const {t} = useTranslation();
 
   const loadTable = () => {
     service.loadAllProfesionals(profesionalState.search);
@@ -96,14 +96,14 @@ const Profesionals: React.FC = () => {
     <>
     <CContainer fluid>
       <CCard>
-        <CCardHeader>Profesionals Management</CCardHeader>
+        <CCardHeader>{t("views.profesional.title")}</CCardHeader>
         <CCardBody>
           <CRow className="justify-content-between">
             <CCol>
               <CRow>
                 <CCol>
                   <div className="border-start border-start-4 border-start-info py-1 px-3">
-                    <div className="text-medium-emphasis small">Total Profesionals</div>
+                    <div className="text-medium-emphasis small">{t("views.profesional.profesional_count")}</div>
                     <div className="fs-5 fw-semibold">{profesionalTable.length}</div>
                   </div>
                 </CCol>
@@ -114,7 +114,7 @@ const Profesionals: React.FC = () => {
               <CRow className="justify-content-end">
                 <CCol xs="auto">
                   <CInputGroup className="mb-3">
-                    <CFormInput placeholder="Buscar" aria-label="Recipient's username" aria-describedby="button-addon2"
+                    <CFormInput placeholder={t("views.profesional.search")} aria-label="Recipient's username" aria-describedby="button-addon2"
                       onChange={updateSearchValue} onKeyDown={pressEnterToSearch} />
                     <CButton type="button" color="secondary" variant="outline" id="button-addon2" onClick={() => searchProfesionals()}>
                       <span className="btn-icon mr-3"><CIcon icon={cilSearch} /> </span>
@@ -143,9 +143,9 @@ const Profesionals: React.FC = () => {
                 <CTableHeaderCell className="text-center">
                   <CIcon icon={cilPeople} />
                 </CTableHeaderCell>
-                <CTableHeaderCell>Profesional Name</CTableHeaderCell>
-                <CTableHeaderCell className="col-2">Licence</CTableHeaderCell>
-                <CTableHeaderCell className="text-center">telefonos</CTableHeaderCell>
+                <CTableHeaderCell>{t("views.profesional.table.name")}</CTableHeaderCell>
+                <CTableHeaderCell className="col-2">{t("views.profesional.table.licence")}</CTableHeaderCell>
+                <CTableHeaderCell className="text-center">{t("views.profesional.table.phones")}</CTableHeaderCell>
                 <CTableHeaderCell className="col-1"></CTableHeaderCell>
               </CTableRow>
             </CTableHead>
