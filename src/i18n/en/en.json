@@ -1,0 +1,26 @@
+{
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "schedule": {
+            "title": "Schedule",
+            "appointment": "Appointment"
+        },
+        "admin": {
+            "title": "Administration",
+            "profesional": "Profesionals",
+            "rooms": "Consulting Rooms",
+            "patients": "Patients",
+            "healt": "Health Insurance",
+            "reports": "Reports"
+        },
+        "extra": {
+            "title": "Extras",
+            "stats": {
+                "title": "Informs",
+                "patients": "Patients stats",
+                "profesional": "Profesionals Stats",
+                "healt": "Healt Insurance Stats"
+            }
+        }
+    }
+}

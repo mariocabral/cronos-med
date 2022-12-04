@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { CBadge } from '@coreui/react';
-
+import { useTranslation } from "react-i18next";
 
 interface Props {
     items: any;
@@ -10,11 +10,12 @@ interface Props {
 
 export const AppSidebarNav: React.FC<Props> = ({items}) => {
   const location = useLocation()
-  const navLink = (name: any, icon: any, badge: any) => {
+  const {t} = useTranslation();
+  const navLink = (name: string, icon: any, badge: any) => {
     return (
       <>
         {icon && icon}
-        {name && name}
+        {t(name)}
         {badge && (
           <CBadge color={badge.color} className="ms-auto">
             {badge.text}

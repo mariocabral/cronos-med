@@ -1,0 +1,26 @@
+{
+    "sidebar": {
+        "dashboard": "Panel General",
+        "schedule": {
+            "title": "Calendario",
+            "appointment": "Turnos"
+        },
+        "admin": {
+            "title": "Administración",
+            "profesional": "Profesionales",
+            "rooms": "Salas de consulta",
+            "patients": "Pacientes",
+            "healt": "Mutuales",
+            "reports": "Reportes"
+        },
+        "extra": {
+            "title": "Extras",
+            "stats": {
+                "title": "Estadísticas",
+                "patients": "Pacientes",
+                "profesional": "Profesionales",
+                "healt": "Mutuales"
+            }
+        }
+    }
+}
