@@ -1,0 +1,65 @@
+{
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "schedule": {
+            "title": "Schedule",
+            "appointment": "Appointment"
+        },
+        "admin": {
+            "title": "Administration",
+            "profesional": "Profesionals",
+            "rooms": "Consulting Rooms",
+            "patients": "Patients",
+            "healt": "Health Insurance",
+            "reports": "Reports"
+        },
+        "extra": {
+            "title": "Extras",
+            "stats": {
+                "title": "Informs",
+                "patients": "Patients stats",
+                "profesional": "Profesionals Stats",
+                "healt": "Healt Insurance Stats"
+            }
+        }
+    },
+    "header": {
+        "dashboard":"Dashboard",
+        "setting": "Setting"
+    },
+    "views": {
+        "profesional": {
+            "title": "Profesional Management",
+            "profesional_count" : "Total profesionals",
+            "search": "Search",
+            "table": {
+                "name": "Name",
+                "licence": "Licence",
+                "phones" : "Phone"
+            },
+            "modal":{
+                "title" : {
+                  "add": "Add new Profesional",
+                  "delete": "Delete Profesional",
+                  "edit": "Edit Profesional data",
+                  "show":"Show Profesional data"
+                },
+                "form": {
+                    "name": "First Name",
+                    "last_name":"Last Name",
+                    "degree": "Degree",
+                    "licence": "Licence",
+                    "phone1": "Main phone",
+                    "phone2": "Alternative phone",
+                    "email": "E-Mail",
+                    "enable": "Enabled",
+                    "submit": "Save",
+                    "close": "Close",
+                    "cancel": "Cancel",
+                    "delete": "Delete"
+                },
+                "delete_description": "The profesional {{lastName}}, {{firstName}} will be delete."
+            }
+        }
+    }
+}

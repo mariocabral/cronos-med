@@ -4,8 +4,6 @@ import {
   CButtonGroup,
   CCol,
   CForm,
-  CFormCheck,
-  CFormInput,
   CModal,
   CModalBody,
   CModalHeader,
@@ -15,11 +13,13 @@ import {
 import { useAppDispatch, useAppSelector } from '../../state/hooks'
 import { selectProfesional, showProfesionalDeleteModal } from '../../state/reducers/profesionalReducer'
 import { ProfesionalService } from '../../services/profesional-service'
+import { useTranslation } from "react-i18next";
 
 const ProfesionalDeleteModal: React.FC = () => {
   const dispatch = useAppDispatch();
   const profesionalState = useAppSelector(selectProfesional);
   const service = new ProfesionalService();
+  const {t} = useTranslation();
   
   const closeModal = () => {
     dispatch(showProfesionalDeleteModal(false))
@@ -36,26 +36,30 @@ const ProfesionalDeleteModal: React.FC = () => {
     }
   }
 
-  const modalTitle = 'Remove Profresional';
   let styleColor = { color: 'danger', textColor: 'dark' };
   
   return (
     <>
       <CModal color={styleColor.color} alignment="center" size="xl" visible={profesionalState.showProfesionalDeleteModal} onClose={closeModal}>
         <CModalHeader className="text-center">
-          <CModalTitle>{modalTitle}</CModalTitle>
+          <CModalTitle>{t('views.profesional.modal.title.delete')}</CModalTitle>
         </CModalHeader>
         <CModalBody>
-            <CCardTitle className="text-center">The profesional {profesionalState.currentProfesional?.lastName}, {profesionalState.currentProfesional?.firstName} will be delete.</CCardTitle>
+            <CCardTitle className="text-center">
+              {t('views.profesional.modal.delete_description', 
+                  { lastName: profesionalState.currentProfesional?.lastName, 
+                    firstName: profesionalState.currentProfesional?.firstName
+                  })
+              }</CCardTitle>
             <p></p>
           <CForm className="row g-3 needs-validation" onSubmit={submitForm}>
             <CCol xs={12} className="align-self-end">
               <CButtonGroup>
                  <CButton color="danger" type="submit">
-                  Delete
+                  {t('views.profesional.modal.form.delete')}
                 </CButton>
                 <CButton color="success" type="submit" onClick={closeModal}>
-                  Cancel
+                  {t('views.profesional.modal.form.cancel')}
                 </CButton>
               </CButtonGroup>
             </CCol>

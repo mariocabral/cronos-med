@@ -12,11 +12,13 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilBell, cilMenu } from '@coreui/icons'
-import { selectSidebarShow, updateSidebarShow } from '../state/sidebar/sidebarReducer';
+import { selectSidebarShow, updateSidebarShow } from '../state/reducers/sidebarReducer';
+import { useTranslation } from "react-i18next";
 
 const AppHeader: React.FC = () => {
   const dispatch = useAppDispatch();
   const sidebarState = useAppSelector(selectSidebarShow);
+  const {t} = useTranslation();
 
   return (
     <CHeader position="sticky" className="mb-4">
@@ -29,10 +31,10 @@ const AppHeader: React.FC = () => {
         </CHeaderToggler>
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
-            <CNavLink to="/dashboard" component={NavLink}>Dashboard</CNavLink>
+            <CNavLink to="/dashboard" component={NavLink}>{t("header.dashboard")}</CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="#">Settings</CNavLink>
+            <CNavLink href="#">{t("header.setting")}</CNavLink>
           </CNavItem>
         </CHeaderNav>
         <CHeaderNav>

@@ -15,8 +15,10 @@ import { useAppDispatch, useAppSelector } from '../../state/hooks'
 import { selectProfesional, showProfesionalModal } from '../../state/reducers/profesionalReducer'
 import { ProfesionalService } from '../../services/profesional-service'
 import { Operations } from '../../state/models/ProfesionalState'
+import { useTranslation } from "react-i18next";
 
 const ProfesionalModal: React.FC = () => {
+  const {t} = useTranslation();
   const dispatch = useAppDispatch();
   const profesionalState = useAppSelector(selectProfesional);
   var currentProfesional = {
@@ -86,17 +88,17 @@ const ProfesionalModal: React.FC = () => {
   let readOnly = false;
   switch (profesionalState.modalOperation) {
     case Operations.ADD_PROFESIONAL:
-      modalTitle = 'Add new Profresional';
+      modalTitle = t("views.profesional.modal.title.add");
       styleColor = { color: 'danger', textColor: 'dark' };
       break;
     case Operations.DELETE_PROFESIONAL:
-      modalTitle = 'Remove Profresional';
+      modalTitle = t("views.profesional.modal.title.delete");
       break;
     case Operations.EDIT_PROFESIONAL:
-      modalTitle = 'Edit Profresional';
+      modalTitle = t("views.profesional.modal.title.edit");
       break;
     case Operations.SHOW_PROFESIONAL:
-      modalTitle = 'Show Profesional';
+      modalTitle = t("views.profesional.modal.title.show");
       readOnly = true;
       break;
   };
@@ -112,7 +114,7 @@ const ProfesionalModal: React.FC = () => {
             <CCol md={6}>
               <CFormInput
                 type="text"
-                label="First Name"
+                label={t("views.profesional.modal.form.name")}
                 defaultValue={profesionalState.currentProfesional?.firstName}
                 onChange={(event)=>setFirstName(event.target.value)}
                 required
@@ -122,7 +124,7 @@ const ProfesionalModal: React.FC = () => {
             <CCol md={6}>
               <CFormInput
                 type="text"
-                label="Last Name"
+                label={t("views.profesional.modal.form.last_name")}
                 defaultValue={profesionalState.currentProfesional?.lastName}
                 onChange={(event)=>setLastName(event.target.value)}
                 required
@@ -132,7 +134,7 @@ const ProfesionalModal: React.FC = () => {
             <CCol md={6}>
               <CFormInput
                 type="text"
-                label="Degree"
+                label={t("views.profesional.modal.form.degree")}
                 defaultValue={profesionalState.currentProfesional?.degree}
                 onChange={(event)=>setDegree(event.target.value)}
                 required
@@ -142,7 +144,7 @@ const ProfesionalModal: React.FC = () => {
             <CCol md={6}>
               <CFormInput
                 type="text"
-                label="Licence"
+                label={t('views.profesional.modal.form.licence')}
                 defaultValue={profesionalState.currentProfesional?.licence}
                 onChange={(event)=>setLicence(event.target.value)}
                 required
@@ -153,7 +155,7 @@ const ProfesionalModal: React.FC = () => {
             <CCol md={6}>
               <CFormInput
                 type="text"
-                label="Phone N1"
+                label={t('views.profesional.modal.form.phone1')}
                 defaultValue={profesionalState.currentProfesional?.phones[0]}
                 onChange={(event)=>setPhone1(event.target.value)}
                 required
@@ -163,7 +165,7 @@ const ProfesionalModal: React.FC = () => {
             <CCol md={6}>
               <CFormInput
                 type="text"
-                label="Phone 2"
+                label={t('views.profesional.modal.form.phone2')}
                 defaultValue={profesionalState.currentProfesional?.phones[1]}
                 onChange={(event)=>setPhone2(event.target.value)}
                 readOnly={readOnly}
@@ -172,7 +174,7 @@ const ProfesionalModal: React.FC = () => {
             <CCol md={12}>
               <CFormInput
                 type="text"
-                label="E-Mail"
+                label={t('views.profesional.modal.form.email')}
                 defaultValue={profesionalState.currentProfesional?.email}
                 onChange={(event) => setEmail(event.target.value)}
                 required
@@ -182,7 +184,7 @@ const ProfesionalModal: React.FC = () => {
             <CCol xs={12} className="align-self-end">
               <CFormCheck
                 type="checkbox"
-                label="Enable profesional"
+                label={t('views.profesional.modal.form.enable')}
                 defaultChecked={profesionalState.currentProfesional?.enabled}
                 onChange={(event) => setEnabled(event.target.checked)}
                 required
@@ -191,11 +193,11 @@ const ProfesionalModal: React.FC = () => {
               <CButtonGroup>
                 { !readOnly &&  
                  <CButton color="primary" type="submit">
-                  Submit form
+                  {t('views.profesional.modal.form.submit')}
                 </CButton>
                 }
                 <CButton color="danger" type="submit" onClick={closeModal}>
-                  Close
+                  {t('views.profesional.modal.form.close')}
                 </CButton>
               </CButtonGroup>
             </CCol>
