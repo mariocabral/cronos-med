@@ -103,7 +103,7 @@ paths:
                 $ref: '#/components/schemas/ProfesionalResponse'
         '404':
           description: Profesional Not Found
-  /rooms:
+  /room:
     parameters: []
     get:
       summary: Get all rooms Info
@@ -142,7 +142,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RoomRequest'
-  '/rooms/{id}':
+  '/room/{id}':
     parameters:
       - schema:
           type: string

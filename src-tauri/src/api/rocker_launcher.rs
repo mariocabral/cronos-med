@@ -3,7 +3,7 @@ extern crate dotenv;
 extern crate rocket_cors;
 use rocket::{Request, Rocket, catch, catchers, routes, Build};
 use crate::repository::mongodb_config;
-use crate::api::profesional_api;
+use crate::api::{profesional_api, room_api};
 use rocket_db_pools::{mongodb, Database};
 use rocket_cors::{
     AllowedHeaders, AllowedOrigins,
@@ -90,7 +90,12 @@ pub fn rocket() -> Rocket<Build> {
                     profesional_api::get_by_id,
                     profesional_api::post,
                     profesional_api::put,
-                    profesional_api::delete,]
+                    profesional_api::delete,
+                    room_api::all,
+                    room_api::get_by_id,
+                    room_api::post,
+                    room_api::put,
+                    room_api::delete,]
         )
         .attach(make_cors())
 }
