@@ -1,11 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from './../Store';
-
-
-export interface SidebarState {
-  sidebarUnfoldable: boolean;
-  sidebarShow: boolean;
-}
+import { RootState } from '../Store';
+import { SidebarState } from '../models/SidebarState';
 
 const initialState: SidebarState = {
     sidebarUnfoldable: false,
