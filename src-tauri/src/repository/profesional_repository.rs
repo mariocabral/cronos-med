@@ -28,7 +28,7 @@ pub async fn all(search: Option<String>, connection: &MongoDatabase) -> Result<V
 pub async fn get(id: String, connection: &MongoDatabase) -> Result<Option<Profesional>> {
     let database = connection.database(&get_db_name());
     let collection = database.collection::<Profesional>(PROFESIONAL_COLLECTION);
-    match collection.find_one(Some(doc! {"profesional_id": id}), None).await {
+    match collection.find_one(Some(doc! {"profesionalId": id}), None).await {
         Ok(profesional_data) => {
             Ok(profesional_data)
         },
