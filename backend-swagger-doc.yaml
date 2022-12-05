@@ -103,8 +103,152 @@ paths:
                 $ref: '#/components/schemas/ProfesionalResponse'
         '404':
           description: Profesional Not Found
+  /rooms:
+    parameters: []
+    get:
+      summary: Get all rooms Info
+      tags:
+        - Rooms
+      parameters: 
+        - in: query
+          name: search
+          required: false
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: Rooms List Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomListResponse'
+      operationId: get-rooms-all
+      description: Retrieve the information of all rooms
+    post:
+      summary: ''
+      tags:
+        - Rooms
+      operationId: post-rooms
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomResponse'
+      description: Create a new profesional
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoomRequest'
+  '/rooms/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Id of the rooms
+    get:
+      summary: Get all room Info
+      tags:
+        - Rooms
+      responses:
+        '200':
+          description: Room Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomResponse'
+        '404':
+          description: Room Not Found
+      operationId: get-rooms-id
+      description: Retrieve the information of room by ID
+      parameters: []
+    delete:
+      summary: 'Delete operation'
+      description: 'Delete opertation for a single room'
+      tags:
+        - Rooms
+      operationId: delete-rooms-id
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: 'Update operation'
+      description: 'Upate room by Id'
+      tags:
+        - Rooms
+      operationId: put-rooms-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoomRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomResponse'
+        '404':
+          description: Room Not Found
 components:
   schemas:
+    RoomRequest:
+      title: Room
+      type: object
+      description: ''
+      properties:
+        name:
+          type: string
+          example: Alice
+        description:
+          type: string
+        enabled:
+          type: boolean
+      required:
+        - name
+        - enabled
+    RoomResponse:
+      title: Room
+      type: object
+      description: ''
+      properties:
+        roomId:
+          type: string
+          format: uuid
+          description: Unique identifier for the given user.
+          example: fb89d9bb-1d2c-4907-9c3a-7e87e256e287
+        name:
+          type: string
+          example: Alice
+        description:
+          type: string
+        enabled:
+          type: boolean
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+          example: '2021-08-24'
+        lastModificationDate:
+          type: string
+          format: date
+          description: The last date that the user was updated.
+          example: '2022-08-24'
+      required:
+        - roomId
+        - name
+        - enabled
+        - createDate
+    RoomListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/RoomResponse'
     ProfesionalListResponse:
       type: array
       items:
