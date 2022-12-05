@@ -12,7 +12,7 @@ import 'simplebar/dist/simplebar.min.css'
 
 // sidebar nav config
 import navigation from '../_nav'
-import { selectSidebarShow, updateSidebarUnfoldable, updateSidebarShow } from '../state/sidebar/sidebarReducer';
+import { selectSidebarShow, updateSidebarUnfoldable, updateSidebarShow } from '../state/reducers/sidebarReducer';
 
 const AppSidebar: React.FC = () =>  {
   const dispatch = useAppDispatch();
