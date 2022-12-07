@@ -177,9 +177,6 @@ export const RoomsApiAxiosParamCreator = function (configuration?: Configuration
             const needsSerialization = (typeof body !== "string") || localVarHeaderParameter['Content-Type'] === 'application/json';
              localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
              
-             localVarHeaderParameter['Content-Length'] = localVarRequestOptions.data.length;
-             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,

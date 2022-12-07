@@ -33,6 +33,7 @@ import { useAppDispatch, useAppSelector } from '../../state/hooks'
 import { selectRoom, setCurrentRoom, showRoomModal, showRoomDeleteModal, setModalOperation, updateSearch } from '../../state/reducers/roomReducer'
 import { RoomService } from '../../services/room-service'
 import { RoomResponse } from '../../apis/models'
+import RoomModal from './RoomModal'
 import { Operations } from '../../state/models/RoomState'
 import { useTranslation } from "react-i18next";
 
@@ -49,9 +50,9 @@ const ConsultingRooms: React.FC = () => {
   };
 
   const newProfesional = () => {
-    //dispatch(setModalOperation(Operations.ADD_PROFESIONAL));
-   // dispatch(setCurrentProfesional(undefined));
-    //dispatch(showProfesionalModal(true));
+    dispatch(setModalOperation(Operations.ADD_ROOM));
+    dispatch(setCurrentRoom(undefined));
+    dispatch(showRoomModal(true));
   };
   
 
@@ -184,6 +185,7 @@ const ConsultingRooms: React.FC = () => {
         </CCardBody>
       </CCard>
     </CContainer>
+    <RoomModal></RoomModal>
     </>
   )
 }
