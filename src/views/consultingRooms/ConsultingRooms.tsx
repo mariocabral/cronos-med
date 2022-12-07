@@ -75,15 +75,15 @@ const ConsultingRooms: React.FC = () => {
   };
 
   const showProfesionalInfo = (item : RoomResponse) => {
-   // dispatch(setModalOperation(Operations.SHOW_PROFESIONAL));
-   // dispatch(setCurrentProfesional(item));
-  // dispatch(showProfesionalModal(true));
+    dispatch(setModalOperation(Operations.SHOW_ROOM));
+    dispatch(setCurrentRoom(item));
+    dispatch(showRoomModal(true));
   };
 
   const updateProfesionalInfo = (item : RoomResponse) => {
-   // dispatch(setCurrentProfesional(item));
-    //dispatch(setModalOperation(Operations.EDIT_PROFESIONAL));
-   // dispatch(showProfesionalModal(true));
+    dispatch(setCurrentRoom(item));
+    dispatch(setModalOperation(Operations.EDIT_ROOM));
+    dispatch(showRoomModal(true));
   };
   
   const deleteProfesionalInfo = (item : RoomResponse) => {

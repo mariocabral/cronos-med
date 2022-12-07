@@ -34,7 +34,7 @@ export interface RoomResponse {
      * @type {string}
      * @memberof RoomResponse
      */
-    description?: string;
+    description: string;
     /**
      * 
      * @type {boolean}

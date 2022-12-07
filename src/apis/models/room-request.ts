@@ -22,6 +22,12 @@
      * @type {string}
      * @memberof RoomRequest
      */
+    roomId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RoomRequest
+     */
     name: string;
     /**
      * 

@@ -203,6 +203,9 @@ components:
       type: object
       description: ''
       properties:
+        roomId:
+          type: string
+          format: uuid
         name:
           type: string
           example: Alice
@@ -213,6 +216,7 @@ components:
       required:
         - name
         - enabled
+        - description
     RoomResponse:
       title: Room
       type: object
