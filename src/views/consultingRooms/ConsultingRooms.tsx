@@ -58,10 +58,10 @@ const ConsultingRooms: React.FC = () => {
   
 
   const updateSearchValue = (event: any) => {
-   // if (event.target.value.length > 0)
-      //dispatch(updateSearch(event.target.value))
-    //else
-     // dispatch(updateSearch(undefined));
+    if (event.target.value.length > 0)
+      dispatch(updateSearch(event.target.value))
+    else
+      dispatch(updateSearch(undefined));
   };
 
   const pressEnterToSearch = (event: any) => {
