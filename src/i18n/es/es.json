@@ -58,7 +58,7 @@
                     "cancel": "Cancelar",
                     "delete": "Borrar"
                 },
-                "delete_description": "El profesional {{lastName}}, {{firstName}} sera eliminado del sistema."
+                "deleteDescription": "El profesional {{lastName}}, {{firstName}} sera eliminado del sistema."
             }
         },
         "room": {
@@ -89,7 +89,7 @@
                     "cancel": "Cancelar",
                     "delete": "Borrar"
                 },
-                "delete_description": "El profesional {{lastName}}, {{firstName}} sera eliminado del sistema."
+                "deleteDescription": "La sala '{{name}}' sera eliminada del sistema."
             }
         }
     }

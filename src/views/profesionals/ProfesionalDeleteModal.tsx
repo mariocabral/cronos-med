@@ -9,11 +9,13 @@ import {
   CModalHeader,
   CModalTitle,
   CCardTitle
-} from '@coreui/react'
-import { useAppDispatch, useAppSelector } from '../../state/hooks'
-import { selectProfesional, showProfesionalDeleteModal } from '../../state/reducers/profesionalReducer'
-import { ProfesionalService } from '../../services/profesional-service'
+} from '@coreui/react';
+import { useAppDispatch, useAppSelector } from '../../state/hooks';
+import { selectProfesional, showProfesionalDeleteModal } from '../../state/reducers/profesionalReducer';
+import { ProfesionalService } from '../../services/profesional-service';
 import { useTranslation } from "react-i18next";
+import { Operations } from '../../state/models/ProfesionalState';
+
 
 const ProfesionalDeleteModal: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -30,7 +32,7 @@ const ProfesionalDeleteModal: React.FC = () => {
     if (form.checkValidity() === true) {
       event.preventDefault();
       event.stopPropagation();
-      if (profesionalState.currentProfesional)
+      if (profesionalState.modalOperation === Operations.DELETE_PROFESIONAL && profesionalState.currentProfesional)
         service.deleteProfesional(profesionalState.currentProfesional.profesionalId);
       closeModal();
     }
@@ -46,7 +48,7 @@ const ProfesionalDeleteModal: React.FC = () => {
         </CModalHeader>
         <CModalBody>
             <CCardTitle className="text-center">
-              {t('views.profesional.modal.delete_description', 
+              {t('views.profesional.modal.deleteDescription', 
                   { lastName: profesionalState.currentProfesional?.lastName, 
                     firstName: profesionalState.currentProfesional?.firstName
                   })
@@ -58,7 +60,7 @@ const ProfesionalDeleteModal: React.FC = () => {
                  <CButton color="danger" type="submit">
                   {t('views.profesional.modal.form.delete')}
                 </CButton>
-                <CButton color="success" type="submit" onClick={closeModal}>
+                <CButton color="success" onClick={closeModal}>
                   {t('views.profesional.modal.form.cancel')}
                 </CButton>
               </CButtonGroup>

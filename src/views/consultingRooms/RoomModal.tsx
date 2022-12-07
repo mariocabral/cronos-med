@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   CButton,
   CButtonGroup,
@@ -11,11 +11,11 @@ import {
   CModalHeader,
   CModalTitle,
   CFormTextarea
-} from '@coreui/react'
-import { useAppDispatch, useAppSelector } from '../../state/hooks'
-import { selectRoom, showRoomModal } from '../../state/reducers/roomReducer'
-import { RoomService } from '../../services/room-service'
-import { Operations } from '../../state/models/RoomState'
+} from '@coreui/react';
+import { useAppDispatch, useAppSelector } from '../../state/hooks';
+import { selectRoom, showRoomModal } from '../../state/reducers/roomReducer';
+import { RoomService } from '../../services/room-service';
+import { Operations } from '../../state/models/RoomState';
 import { useTranslation } from "react-i18next";
 
 const RoomModal: React.FC = () => {

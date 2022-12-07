@@ -45,5 +45,12 @@ export class RoomService {
                                 .finally(() => console.log("Update room service constructor done."))
     }
     
+    deleteRoom(id: string) {
+        console.log("delete a room {}", id)
+        this.roomsApi.deleteRoomsId(id)
+                                .then((response) => console.log("room deleted {}", response))
+                                .catch((err) => console.log(err))
+                                .finally(() => console.log("Delete room service constructor done."))
+    }
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   CButton,
   CButtonGroup,
@@ -17,8 +17,8 @@ import {
   CTableHeaderCell,
   CTableRow,
   CBadge,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
 import {
   cilDescription,
   cilPencil,
@@ -28,13 +28,14 @@ import {
   cilTrash,
   cilUser,
   cilUserPlus
-} from '@coreui/icons'
-import { useAppDispatch, useAppSelector } from '../../state/hooks'
-import { selectRoom, setCurrentRoom, showRoomModal, showRoomDeleteModal, setModalOperation, updateSearch } from '../../state/reducers/roomReducer'
-import { RoomService } from '../../services/room-service'
-import { RoomResponse } from '../../apis/models'
-import RoomModal from './RoomModal'
-import { Operations } from '../../state/models/RoomState'
+} from '@coreui/icons';
+import { useAppDispatch, useAppSelector } from '../../state/hooks';
+import { selectRoom, setCurrentRoom, showRoomModal, showRoomDeleteModal, setModalOperation, updateSearch } from '../../state/reducers/roomReducer';
+import { RoomService } from '../../services/room-service';
+import { RoomResponse } from '../../apis/models';
+import RoomModal from './RoomModal';
+import RoomDeleteModal from './ProfesionalDeleteModal';
+import { Operations } from '../../state/models/RoomState';
 import { useTranslation } from "react-i18next";
 
 
@@ -87,9 +88,9 @@ const ConsultingRooms: React.FC = () => {
   };
   
   const deleteProfesionalInfo = (item : RoomResponse) => {
-    //dispatch(setCurrentProfesional(item));
-   // dispatch(setModalOperation(Operations.DELETE_PROFESIONAL));
-   // dispatch(showProfesionalDeleteModal(true));
+    dispatch(setCurrentRoom(item));
+    dispatch(setModalOperation(Operations.DELETE_ROOM));
+    dispatch(showRoomDeleteModal(true));
   };
 
   return (
@@ -186,6 +187,7 @@ const ConsultingRooms: React.FC = () => {
       </CCard>
     </CContainer>
     <RoomModal></RoomModal>
+    <RoomDeleteModal></RoomDeleteModal>
     </>
   )
 }
