@@ -1,5 +1,5 @@
 use crate::models::profesional_model::Profesional;
-use mongodb::{error::Result, bson::doc, results::DeleteResult}; 
+use mongodb::{error::Result, bson::doc, results::DeleteResult, IndexModel}; 
 use super::super::api::rocker_launcher::MongoDatabase;
 use crate::repository::mongodb_config::get_db_name;
 use uuid::Uuid;
@@ -9,6 +9,31 @@ use rocket::log::info_;
 pub const PROFESIONAL_COLLECTION: &str = "profesionals";
 pub const PROFESIONAL_SEARCH_INDEX: &str = "$**_\"text\"";
 
+pub async fn init_indexs(connection: &MongoDatabase) {
+    let database = connection.database(&get_db_name());
+    let profesional_collection = database.collection::<Profesional>(PROFESIONAL_COLLECTION);
+        match profesional_collection.list_index_names().await{
+            Ok(result) => {
+                result.iter().for_each(|i| info_!("[{}]Index found {}", PROFESIONAL_COLLECTION, i));
+                if result.iter().any(|i| i==PROFESIONAL_SEARCH_INDEX) {
+                    info_!("The index {} already exist.", PROFESIONAL_SEARCH_INDEX);
+                } else {
+                    info_!("The index {} must be created.", PROFESIONAL_SEARCH_INDEX);
+                    let model = IndexModel::builder()
+                                .keys(doc! {"$**": "text"})
+                                .options(None)
+                                .build();
+                    match profesional_collection.create_index(model, None).await {
+                        Ok(_) => {},
+                        Err(_) => {}
+                    }
+                }
+            },
+            Err(_err) => {
+                info_!("Fail init mongodb");
+            }
+        } 
+}
 
 pub async fn all(search: Option<String>, connection: &MongoDatabase) -> Result<Vec<Profesional>> {
     let database = connection.database(&get_db_name());
