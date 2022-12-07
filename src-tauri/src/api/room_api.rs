@@ -10,9 +10,9 @@ fn error_status(error: Error) -> Status {
     }
 }
 
-#[get("/room")]
-pub async fn all(connection: &super::rocker_launcher::MongoDatabase) -> Result<Json<Vec<Room>>, Status> {
-    match room_repository::all(connection).await {
+#[get("/room?<search>")]
+pub async fn all(search: Option<String>, connection: &super::rocker_launcher::MongoDatabase) -> Result<Json<Vec<Room>>, Status> {
+    match room_repository::all(search, connection).await {
         Ok(res) => Ok(Json(res)),
         Err(err) => {
             println!("Error: {}", err.kind);

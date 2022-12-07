@@ -11,11 +11,10 @@ use rocket_cors::{
 };
 use rocket::http::Method;
 use rocket::fairing::{self, AdHoc};
-use crate::repository::profesional_repository::{PROFESIONAL_COLLECTION, PROFESIONAL_SEARCH_INDEX};
-use crate::models::profesional_model::Profesional;
-use rocket::log::info_;
+use crate::repository::profesional_repository;
+use crate::repository::room_repository;
 use mongodb::bson::doc; 
-use mongodb::IndexModel; 
+use rocket::log::info_;
 
 #[derive(Database)]
 #[database("cronos-db")]
@@ -23,30 +22,11 @@ pub struct MongoDatabase(mongodb::Client);
 
 async fn run_init_mongo_collections(rocket: Rocket<Build>) -> fairing::Result {
     if let Some(_db) = MongoDatabase::fetch(&rocket) {
-        // run migrations using `db`. get the inner type with &db.0.
-        let database = &_db.0.database(&mongodb_config::get_db_name());
-        let profesional_collection = database.collection::<Profesional>(PROFESIONAL_COLLECTION);
-        match profesional_collection.list_index_names().await{
-            Ok(result) => {
-                result.iter().for_each(|i| info_!("[{}]Index found {}", PROFESIONAL_COLLECTION, i));
-                if result.iter().any(|i| i==PROFESIONAL_SEARCH_INDEX) {
-                    info_!("The index {} already exist.", PROFESIONAL_SEARCH_INDEX);
-                } else {
-                    info_!("The index {} must be created.", PROFESIONAL_SEARCH_INDEX);
-                    let model = IndexModel::builder()
-                                .keys(doc! {"$**": "text"})
-                                .options(None)
-                                .build();
-                    match profesional_collection.create_index(model, None).await {
-                        Ok(_) => {},
-                        Err(_) => {}
-                    }
-                }
-            },
-            Err(_err) => {
-                info_!("Fail init mongodb");
-            }
-        } 
+        let connection = &_db;
+        info_!("Init index of Professional Collection");
+        profesional_repository::init_indexs(connection).await;
+        info_!("Init index of Room Collection");
+        room_repository::init_indexs(connection).await;
         Ok(rocket)
     } else {
         Err(rocket)
