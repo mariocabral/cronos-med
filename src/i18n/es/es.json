@@ -67,8 +67,10 @@
             "search": "Buscar",
             "table": {
                 "name": "Nombre",
-                "enabled": "Habilitado",
-                "description" : "Descripción"
+                "enabled": "Estado",
+                "description" : "Descripción",
+                "enabledFlag" : "Habilitada",
+                "disabledFlag" : "Deshabilitada"
             },
             "modal":{
                 "title" : {

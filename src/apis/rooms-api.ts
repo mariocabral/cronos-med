@@ -37,7 +37,7 @@ export const RoomsApiAxiosParamCreator = function (configuration?: Configuration
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling deleteRoomsId.');
             }
-            const localVarPath = `/rooms/{id}`
+            const localVarPath = `/room/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -73,7 +73,7 @@ export const RoomsApiAxiosParamCreator = function (configuration?: Configuration
          * @throws {RequiredError}
          */
         getRoomsAll: async (search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/rooms`;
+            const localVarPath = `/room`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -116,7 +116,7 @@ export const RoomsApiAxiosParamCreator = function (configuration?: Configuration
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling getRoomsId.');
             }
-            const localVarPath = `/rooms/{id}`
+            const localVarPath = `/room/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -151,7 +151,7 @@ export const RoomsApiAxiosParamCreator = function (configuration?: Configuration
          * @throws {RequiredError}
          */
         postRooms: async (body?: RoomRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/rooms`;
+            const localVarPath = `/room`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -198,7 +198,7 @@ export const RoomsApiAxiosParamCreator = function (configuration?: Configuration
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling putRoomsId.');
             }
-            const localVarPath = `/rooms/{id}`
+            const localVarPath = `/room/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
