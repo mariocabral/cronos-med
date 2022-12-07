@@ -16,6 +16,7 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  CBadge,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {
@@ -30,7 +31,7 @@ import {
 } from '@coreui/icons'
 import { useAppDispatch, useAppSelector } from '../../state/hooks'
 import { selectRoom, setCurrentRoom, showRoomModal, showRoomDeleteModal, setModalOperation, updateSearch } from '../../state/reducers/roomReducer'
-//import { ProfesionalService } from '../../services/profesional-service'
+import { RoomService } from '../../services/room-service'
 import { RoomResponse } from '../../apis/models'
 import { Operations } from '../../state/models/RoomState'
 import { useTranslation } from "react-i18next";
@@ -40,11 +41,11 @@ const ConsultingRooms: React.FC = () => {
   const dispatch = useAppDispatch();
   const roomState = useAppSelector(selectRoom);
   const roomTable = roomState.rooms;
-  //const service = new ProfesionalService();
+  const service = new RoomService();
   const {t} = useTranslation();
 
   const loadTable = () => {
-    //service.loadAllProfesionals(profesionalState.search);
+    service.loadAllRooms(roomState.search);
   };
 
   const newProfesional = () => {
@@ -69,7 +70,7 @@ const ConsultingRooms: React.FC = () => {
 
   const searchProfesionals = () => {
     console.log("Search " + roomState.search);
-    //service.loadAllProfesionals(profesionalState.search);
+    service.loadAllRooms(roomState.search);
   };
 
   const showProfesionalInfo = (item : RoomResponse) => {
@@ -154,7 +155,12 @@ const ConsultingRooms: React.FC = () => {
                     <CIcon icon={cilUser} />
                   </CTableDataCell>
                   <CTableDataCell>{item.name}</CTableDataCell>
-                  <CTableDataCell ><div>{item.enabled}</div></CTableDataCell>
+                  <CTableDataCell >
+                    {
+                    item.enabled? <CBadge color="success">{t('views.room.table.enabledFlag')}</CBadge> : 
+                                  <CBadge color="danger">{t('views.room.table.disabledFlag')}</CBadge>
+                    }
+                  </CTableDataCell>
                   <CTableDataCell className="text-center">{item.description}</CTableDataCell>
                   <CTableDataCell >
                     <CCol>
