@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   CButton,
   CButtonGroup,
@@ -10,11 +10,11 @@ import {
   CModalBody,
   CModalHeader,
   CModalTitle
-} from '@coreui/react'
-import { useAppDispatch, useAppSelector } from '../../state/hooks'
-import { selectProfesional, showProfesionalModal } from '../../state/reducers/profesionalReducer'
-import { ProfesionalService } from '../../services/profesional-service'
-import { Operations } from '../../state/models/ProfesionalState'
+} from '@coreui/react';
+import { useAppDispatch, useAppSelector } from '../../state/hooks';
+import { selectProfesional, showProfesionalModal } from '../../state/reducers/profesionalReducer';
+import { ProfesionalService } from '../../services/profesional-service';
+import { Operations } from '../../state/models/ProfesionalState';
 import { useTranslation } from "react-i18next";
 
 const ProfesionalModal: React.FC = () => {

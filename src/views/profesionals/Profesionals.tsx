@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   CButton,
   CButtonGroup,
@@ -16,8 +16,8 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
 import {
   cilDescription,
   cilPencil,
@@ -27,14 +27,14 @@ import {
   cilTrash,
   cilUser,
   cilUserPlus
-} from '@coreui/icons'
-import { useAppDispatch, useAppSelector } from '../../state/hooks'
-import { selectProfesional, setCurrentProfesional, showProfesionalModal, showProfesionalDeleteModal, setModalOperation, updateSearch } from '../../state/reducers/profesionalReducer'
-import { ProfesionalService } from '../../services/profesional-service'
-import { ProfesionalResponse } from '../../apis/models'
-import ProfesionalModal from './ProfesionalModal'
-import ProfesionalDeleteModal from './ProfesionalDeleteModal'
-import { Operations } from '../../state/models/ProfesionalState'
+} from '@coreui/icons';
+import { useAppDispatch, useAppSelector } from '../../state/hooks';
+import { selectProfesional, setCurrentProfesional, showProfesionalModal, showProfesionalDeleteModal, setModalOperation, updateSearch } from '../../state/reducers/profesionalReducer';
+import { ProfesionalService } from '../../services/profesional-service';
+import { ProfesionalResponse } from '../../apis/models';
+import ProfesionalModal from './ProfesionalModal';
+import ProfesionalDeleteModal from './ProfesionalDeleteModal';
+import { Operations } from '../../state/models/ProfesionalState';
 import { useTranslation } from "react-i18next";
 
 
