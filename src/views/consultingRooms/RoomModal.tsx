@@ -50,7 +50,13 @@ const RoomModal: React.FC = () => {
       event.stopPropagation();
       if (roomState.modalOperation === Operations.ADD_ROOM)
         service.createRoom(currentRoom);
-      closeModal();
+      if (roomState.modalOperation === Operations.EDIT_ROOM &&
+        roomState.currentRoom){
+          currentRoom.name = currentRoom.name.length > 0 ? currentRoom.name : roomState.currentRoom.name;
+          currentRoom.description = currentRoom.description.length > 0 ? currentRoom.description : roomState.currentRoom.description;
+          service.updateRoom(roomState.currentRoom.roomId, currentRoom);
+      }
+        closeModal();
     }
   }
 
@@ -61,9 +67,6 @@ const RoomModal: React.FC = () => {
     case Operations.ADD_ROOM:
       modalTitle = t("views.room.modal.title.add");
       styleColor = { color: 'danger', textColor: 'dark' };
-      break;
-    case Operations.DELETE_ROOM:
-      modalTitle = t("views.room.modal.title.delete");
       break;
     case Operations.EDIT_ROOM:
       modalTitle = t("views.room.modal.title.edit");

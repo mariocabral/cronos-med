@@ -36,6 +36,14 @@ export class RoomService {
                                 .finally(() => console.log("Create room service constructor done."))
     }
 
+    updateRoom(id: string, room: RoomRequest) {
+        console.log("update a room {}", room)
+        room.roomId = id;
+        this.roomsApi.putRoomsId(id, room)
+                                .then((response) => console.log("room updated {}", response))
+                                .catch((err) => console.log(err))
+                                .finally(() => console.log("Update room service constructor done."))
+    }
     
 }
 
