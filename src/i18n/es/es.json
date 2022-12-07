@@ -60,6 +60,34 @@
                 },
                 "delete_description": "El profesional {{lastName}}, {{firstName}} sera eliminado del sistema."
             }
+        },
+        "room": {
+            "title": "Administracion de consultorios",
+            "room_count" : "Total de consultorios",
+            "search": "Buscar",
+            "table": {
+                "name": "Nombre",
+                "enabled": "Habilitado",
+                "description" : "Descripción"
+            },
+            "modal":{
+                "title" : {
+                  "add": "Agregar una nueva Sala",
+                  "delete": "Eliminar datos de una Sala",
+                  "edit": "Editar los datos de una Sala",
+                  "show":"Mostrar los datos de una Sala"
+                },
+                "form": {
+                    "name": "Nombre",
+                    "description": "Descripción",
+                    "enable": "Habilitar",
+                    "submit": "Guardar",
+                    "close": "Cerrar",
+                    "cancel": "Cancelar",
+                    "delete": "Borrar"
+                },
+                "delete_description": "El profesional {{lastName}}, {{firstName}} sera eliminado del sistema."
+            }
         }
     }
 }

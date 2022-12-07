@@ -4,6 +4,7 @@ import ConfigurationReducer  from './reducers/configReducer';
 import logger from 'redux-logger';
 import thunk from "redux-thunk"
 import profesionalReducer from './reducers/profesionalReducer';
+import roomReducer from './reducers/roomReducer';
 
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     sideBar: SidebarReducer,
     config: ConfigurationReducer,
     profesional: profesionalReducer,
+    room: roomReducer,
   },
   middleware: [thunk, logger],
 })
