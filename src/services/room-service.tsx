@@ -21,11 +21,19 @@ export class RoomService {
     }
 
     loadAllRooms(search? :String) {
-        console.log("Loading profesionals with search critera '{}'", search)
+        console.log("Loading rooms with search critera '{}'", search)
         this.roomsApi.getRoomsAll(search?.toString())
                                 .then((response) => this.dispatch(updateRoomList(response.data)))
                                 .catch(() => this.dispatch(updateRoomList(new Array())))
                                 .finally(() => console.log("Load rooms service constructor done."))
+    }
+
+    createRoom(room: RoomRequest) {
+        console.log("create a room {}", room)
+        this.roomsApi.postRooms(room)
+                                .then((response) => console.log("room created {}", response))
+                                .catch((err) => console.log(err))
+                                .finally(() => console.log("Create room service constructor done."))
     }
 
     

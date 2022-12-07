@@ -82,6 +82,7 @@
                 "form": {
                     "name": "Nombre",
                     "description": "Descripción",
+                    "descriptionText": "El texto no debe superar los 300 caracteres.",
                     "enable": "Habilitar",
                     "submit": "Guardar",
                     "close": "Cerrar",

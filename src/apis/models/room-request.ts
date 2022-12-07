@@ -16,7 +16,7 @@
  * @export
  * @interface RoomRequest
  */
-export interface RoomRequest {
+ export interface RoomRequest {
     /**
      * 
      * @type {string}
